@@ -1,8 +1,8 @@
-"""Initial
+"""added photo url
 
-Revision ID: 39daac5f925a
+Revision ID: bb6c1760e851
 Revises: 
-Create Date: 2022-10-17 23:18:48.651463
+Create Date: 2022-10-23 14:26:06.913469
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '39daac5f925a'
+revision = 'bb6c1760e851'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,6 +26,7 @@ def upgrade() -> None:
     sa.Column('phone', sa.String(length=13), nullable=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.Column('last_modified_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
+    sa.Column('role', sa.Enum('super_admin', 'admin', 'user', name='userrole'), server_default='user', nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
